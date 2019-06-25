@@ -1,3 +1,4 @@
+//getting references to the HTML Objects
 const message=document.querySelector(".message");
 
 const score=document.querySelector(".show-score");
@@ -6,17 +7,18 @@ const rebels=document.querySelector(".rebels");
 
 const startButton=document.querySelector(".start");
 
-const gameArea=document.querySelector(".player");
+const playerBasket=document.querySelector(".player-basket");
 
-
+//User keys
 let keys={
-    Up:false,
-    Down:false,
-    Left:false,
-    Right:false
+    ArrowUp:false,
+    ArrowDown:false,
+    ArrowLeft:false,
+    ArrowRight:false
 };
 
-/* startButton.addEventListener("click",function(){
+//Adding event listener to our button
+startButton.addEventListener("click",function(){
 
     message.style.display="none";
     startButton.style.display="none";
@@ -24,20 +26,21 @@ let keys={
     player.totalRebels=5;
     player.play=true;
     updateScore();
-}); */
-
-document.addEventListener("keydown",pressKeyOn);
-
-function pressKeyOn(event){
+    requestAnimationFrame(play);
+});
+document.addEventListener("keydown",function(event){
     console.log(event.key);
-}
+    event.preventDefault();
+    keys[event.key]=true;
+});
 
-document.addEventListener("keyup",function(){
-
+document.addEventListener("keyup",function(event){
+    console.log(event.key);
+    event.preventDefault();  
+    keys[event.key]=false;
 });
 
 let player={
-
     score:0,
     totalRebels:0,
     play:false,
@@ -47,5 +50,9 @@ let player={
 
 function updateScore(){
     score.textContent=player.score;
-    rebels.textContent=player.rebels;
+    rebels.textContent=player.totalRebels;
+}
+
+function play(){
+    
 }
