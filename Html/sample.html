@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sample Document</title>
+    <script type="text/javascript">
+        let ref=null;
+        window.onload=function(){
+        ref=document.getElementById("mButton");
+        if(ref){
+            alert("Not Null!");
+        }
+        else{
+            alert("Null");
+        }
+        }
+        </script>
+</head>
+<body>
+    <button id="mButton">Add Dynamically to HTML</button>
+    <div id="dynamic"></div>
+</body>
+</html>

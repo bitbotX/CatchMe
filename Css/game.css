@@ -1,0 +1,36 @@
+.top-level-container{
+    position: relative;
+    height: 90vh;
+    width: 90%;
+    left: 5%;
+    text-align: center;
+    box-shadow: 0px 2px 8px 0px goldenrod;
+    background-color: bisque;
+}
+
+.player{
+    position: absolute;
+    height: 50px;
+    width: 100px;
+    bottom: 10%;
+    left: 30%;
+    background-color: red;
+    box-shadow: 0px 2px 8px 0px goldenrod;
+}
+
+.start{
+    display: inline-block;
+    padding: 15px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 2em;
+    color: rebeccapurple;
+    background-color: white;
+}
+
+.parent-container{
+    padding: 5px;
+    font-family: sans-serif;
+    font-size: 2em;
+    text-align: center;
+}
