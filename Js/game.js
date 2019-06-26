@@ -10,6 +10,10 @@ const startButton=document.querySelector(".start");
 const playerBasket=document.querySelector(".player-basket");
 
 let bounds=playerBasket.getBoundingClientRect();
+
+const container=document.querySelector(".top-level-container");
+
+let containerBound=container.getBoundingClientRect();
 //User keys
 let keys={
     ArrowUp:false,
@@ -27,6 +31,7 @@ startButton.addEventListener("click",function(){
     player.totalRebels=5;
     player.play=true;
     updateScore();
+    generateRebels(6);
     requestAnimationFrame(startGame);
 });
 document.addEventListener("keydown",function(event){
@@ -55,20 +60,41 @@ function updateScore(){
 
 function startGame(){
     if(player.play==true){
-        if(keys.ArrowDown){
+        if(keys.ArrowDown && bounds.y < (containerBound.height - bounds.height)){
             bounds.y+=player.speed;
         }
-        if(keys.ArrowUp){
+        if(keys.ArrowUp && bounds.y>0){
             bounds.y-=player.speed;
         }
-        if(keys.ArrowLeft){
+        if(keys.ArrowLeft && bounds.x>0){
             bounds.x-=player.speed;
         }
-        if(keys.ArrowRight){
+        if(keys.ArrowRight && bounds.x<(containerBound.width - bounds.width)){
             bounds.x+=player.speed;
         }
         playerBasket.style.left=bounds.x+"px";
         playerBasket.style.top=bounds.y+"px";
         requestAnimationFrame(startGame)
+    }
+}
+
+function generateRebels(mReb){
+    for(let morePlayers=0;morePlayers<mReb;morePlayers++){
+        if(player.totalRebels>0){
+            let nPlayers=player.totalRebels;
+            player.totalRebels--;
+            updateScore();
+            let dElement=document.createElement("div");
+            dElement.classList.add("bad");
+            dElement.x=Math.floor(Math.random()*containerBound.width-100);
+            if(dElement.x<0){
+                dElement.x=100;
+            }
+            dElement.y=(Math.floor(Math.random()*500)*-1)-200;
+            dElement.speed=Math.ceil(Math.random()*10)+3;
+            container.appendChild(dElement);
+            dElement.style.left=dElement.x+"px";
+            dElement.style.top=dElement.y+"px";
+        }
     }
 }
