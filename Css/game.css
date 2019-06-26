@@ -38,3 +38,15 @@
 .show-score{
     margin-right: 100px;
 }
+
+.bad{
+    position:absolute;
+    height: 50px;
+    width: 100px;
+    top: 0;
+    left: 0;
+    background-color: blue;
+    color: white;
+    line-height: 100px;
+    text-align: center;
+}
