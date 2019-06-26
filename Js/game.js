@@ -9,6 +9,7 @@ const startButton=document.querySelector(".start");
 
 const playerBasket=document.querySelector(".player-basket");
 
+let bounds=playerBasket.getBoundingClientRect();
 //User keys
 let keys={
     ArrowUp:false,
@@ -26,7 +27,7 @@ startButton.addEventListener("click",function(){
     player.totalRebels=5;
     player.play=true;
     updateScore();
-    requestAnimationFrame(play);
+    requestAnimationFrame(startGame);
 });
 document.addEventListener("keydown",function(event){
     console.log(event.key);
@@ -45,7 +46,6 @@ let player={
     totalRebels:0,
     play:false,
     speed:15
-
 };
 
 function updateScore(){
@@ -53,6 +53,22 @@ function updateScore(){
     rebels.textContent=player.totalRebels;
 }
 
-function play(){
-    
+function startGame(){
+    if(player.play==true){
+        if(keys.ArrowDown){
+            bounds.y+=player.speed;
+        }
+        if(keys.ArrowUp){
+            bounds.y-=player.speed;
+        }
+        if(keys.ArrowLeft){
+            bounds.x-=player.speed;
+        }
+        if(keys.ArrowRight){
+            bounds.x+=player.speed;
+        }
+        playerBasket.style.left=bounds.x+"px";
+        playerBasket.style.top=bounds.y+"px";
+        requestAnimationFrame(startGame)
+    }
 }
