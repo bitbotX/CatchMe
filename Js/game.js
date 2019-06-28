@@ -79,6 +79,11 @@ function startGame(){
         let enemies=document.querySelectorAll(".bad");
         if(enemies.length==0){
             //stop the game
+            message.style.display="block";
+            message.textContent="Game Over!";
+            startButton.style.display="block";
+            playerBasket.style.display="none";
+            player.play=false;
         }
         else{
             //move enemies
@@ -119,6 +124,23 @@ function moveEnemies(p){
     }
     if(collision(playerBasket,p)){
         player.score++;
+        container.removeChild(p);
+        if(player.totalRebels>0){
+            let nPlayers=player.totalRebels;
+            player.totalRebels--;
+            updateScore();
+            let dElement=document.createElement("div");
+            dElement.classList.add("bad");
+            dElement.x=Math.floor(Math.random()*containerBound.width-100);
+            if(dElement.x<0){
+                dElement.x=100;
+            }
+            dElement.y=(Math.floor(Math.random()*500)*-1)-200;
+            dElement.speed=Math.ceil(Math.random()*10)+3;
+            container.appendChild(dElement);
+            dElement.style.left=dElement.x+"px";
+            dElement.style.top=dElement.y+"px";
+        }
         updateScore();
     }
     p.style.top=p.y+"px";
