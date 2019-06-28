@@ -103,6 +103,7 @@ function generateRebels(mReb){
             updateScore();
             let dElement=document.createElement("div");
             dElement.classList.add("bad");
+            dElement.style.height=Math.floor(Math.random()*50)+50;
             dElement.x=Math.floor(Math.random()*containerBound.width-100);
             if(dElement.x<0){
                 dElement.x=100;
@@ -121,6 +122,11 @@ function moveEnemies(p){
     p.y+=p.speed;
     if (e.y>containerBound.height-100) {
         e.y=-100;
+        e.x=Math.floor(Math.random()*containerBound.width-100);
+        if(e.x<0){
+            e.x=100;
+        }
+        e.style.left=e.x;
     }
     if(collision(playerBasket,p)){
         player.score++;
