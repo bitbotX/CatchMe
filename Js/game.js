@@ -117,5 +117,19 @@ function moveEnemies(p){
     if (e.y>containerBound.height-100) {
         e.y=-100;
     }
+    if(collision(playerBasket,p)){
+        player.score++;
+        updateScore();
+    }
     p.style.top=p.y+"px";
+}
+
+function collide(e1,e2){
+    let e1Bounds=e1.getBoundingClientRect();
+    let e2Bounds=e2.getBoundingClientRect();
+    return !((e1Bounds.bottom<e2Bounds.top)
+    || (e1Bounds.top>e2Bounds.bottom)
+    || (e1Bounds.right<e2Bounds.left)
+    ||(e1Bounds.left>e2Bounds.right)    
+    )
 }
