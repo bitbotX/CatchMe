@@ -74,7 +74,19 @@ function startGame(){
         }
         playerBasket.style.left=bounds.x+"px";
         playerBasket.style.top=bounds.y+"px";
-        requestAnimationFrame(startGame)
+        requestAnimationFrame(startGame);
+
+        let enemies=document.querySelectorAll(".bad");
+        if(enemies.length==0){
+            //stop the game
+        }
+        else{
+            //move enemies
+            for(let i=0;i<enemies.length;i++){
+                moveEnemies(enemies[i]);
+            }
+        }
+        console.log(enemies);
     }
 }
 
@@ -97,4 +109,13 @@ function generateRebels(mReb){
             dElement.style.top=dElement.y+"px";
         }
     }
+}
+
+function moveEnemies(p){
+    console.log(p);
+    p.y+=p.speed;
+    if (e.y>containerBound.height-100) {
+        e.y=-100;
+    }
+    p.style.top=p.y+"px";
 }
